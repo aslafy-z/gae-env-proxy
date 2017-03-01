@@ -38,10 +38,12 @@ func main() {
 			inputFile = f
 			defer inputFile.Close()
 		}
-		if f, err := os.OpenFile(c.String("output"), os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0666); err == nil {
-			inputFile = f
+
+		if f, err := os.OpenFile(c.String("output"), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666); err == nil {
+			outputFile = f
 			defer outputFile.Close()
 		}
+
 		bytes, err := ioutil.ReadAll(inputFile)
 		if err != nil {
 			return err
