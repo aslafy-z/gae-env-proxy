@@ -56,7 +56,7 @@ func main() {
 		}
 		appEnv := appMap["env_variables"].(map[interface{}]interface{})
 		for _, e := range os.Environ() {
-			pair := strings.Split(e, "=")
+			pair := strings.SplitN(e, "=", 2)
 			if strings.HasPrefix(pair[0], envPrefix) {
 				appEnv[pair[0]] = pair[1]
 			}
